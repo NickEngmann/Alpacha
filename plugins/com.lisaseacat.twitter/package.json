@@ -1,0 +1,29 @@
+{
+  "name": "twittercordovaplugin",
+  "version": "0.0.3",
+  "description": "An Apache Cordova plugin for the Twitter Streaming API.  Currently only works for Android.",
+  "cordova": {
+    "id": "com.lisaseacat.twitter",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "twitter",
+    "streaming",
+    "api",
+    "tweets",
+    "streaming api",
+    "lisa",
+    "lisa deluca",
+    "ldeluca",
+    "twitter4j",
+    "oauth",
+    "inappbrowser",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Lisa Seacat DeLuca",
+  "license": "Apache 2.0"
+}
