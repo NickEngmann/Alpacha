@@ -83,9 +83,10 @@ h1 {
     border-radius:4px;
     -webkit-border-radius:4px;
     color:#FFFFFF;
-    font-size:12px;
+    font-size:16px;
     margin:0px 30px;
-    padding:2px 0px;
+    padding:2px 2px;
+    border-color: #6d513a;
 }
 
 .event.listening {
@@ -94,7 +95,7 @@ h1 {
 }
 
 .event.received {
-    background-color:#4B946A;
+    background-color:#c29877;
     display:none;
 }
 
@@ -115,5 +116,9 @@ h1 {
     -webkit-animation:fade 3000ms infinite;
 }
 button {
-    background-color: Transparent;
+    background-color: #c29877;
+    border-color: #6d513a;
+    border-radius:4px;
+    color:white;
+    font-size: 14px;
     }
