@@ -55,7 +55,7 @@ body {
     height:50%;                   /* text area height */
     width:50%;                   /* text area width */
     text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    padding:260px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
@@ -71,7 +71,7 @@ body {
 }
 
 h1 {
-    font-size:24px;
+    font-size:28px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -111,6 +111,9 @@ h1 {
 }
  
 .blink {
-    animation:fade 30000ms infinite;
-    -webkit-animation:fade 30000ms infinite;
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
 }
+button {
+    background-color: Transparent;
+    }

@@ -33,7 +33,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
         // twitter.init({
         //     consumerKey: "mGeFCz7qIShzRPGdOQNyg2dqR",
         //     consumerSecret: "FuQjkhlmAcRTYn7YcfU1VQNkcXXqE3qR0K7yFEYjGzfPb0Ioir",
@@ -106,6 +105,86 @@ var app = {
         // }
 
         // window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+        // function getJSONP(url, success) {
+        //     var ud = '_' + +new Date,
+        //         script = document.createElement('script'),
+        //         head = document.getElementsByTagName('head')[0] 
+        //                || document.documentElement;
+
+        //     window[ud] = function(data) {
+        //         head.removeChild(script);
+        //         success && success(data);
+        //     };
+
+        //     script.src = url.replace('callback=?', 'callback=' + ud);
+        //     head.appendChild(script);
+
+        // }
+
+        // getJSONP('https://www.reddit.com/r/ShowerThoughts/new/.json?limit=1', function(data){
+        //     console.log(data);
+        // });  
+        function loadReddit(url, id) {
+            var request = new XMLHttpRequest();
+            console.log(url);
+            request.open("GET", url, true);
+            request.onreadystatechange = function() {//Call a function when the state changes.
+                if (request.readyState == 4) {
+                    if (request.status == 200 || request.status == 0) {
+                        var content = JSON.parse(request.responseText);
+                        //console.log(content.data.children[0].data.title);
+       
+                        // var data = "<table cellspacing='0'>";
+                        // var tableClass;
+                        // for (i = 0; i < 3; i++) {
+                        //     if (i % 2 == 0) {
+                        //         tableClass = 'tweetOdd';
+                        //     }
+                        //     else {
+                        //         tableClass = 'tweetEven';
+                        //     }
+                        //     data += "<tr style='border: 1px solid black'>";
+                        //     data += "<td class='" + tableClass + "'>";
+                        //     // data += "<img src='" + tweets.results[i].profile_image_url + "'/>";
+                        //     data += "</td>";
+                        //     data += "<td class='" + tableClass + "'>";
+                        //     data += "<b>" + content.data.children[i].data.subreddit + "</b><br/>";
+                        //     data += content.data.children[i].data.title + "<br/>";
+                        //     data += content.data.children[0].data.created_utc
+                        //     data += "</td>";
+                        //     data += "</tr>";
+                        // }
+                        // data += "</table>";
+                        for (i = 0; i < 3; i++) {
+                            if (i == 0){
+                                var data = "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +content.data.children[i].data.title+ "')\">"+content.data.children[i].data.title+"</button>";
+                            }
+                            else{
+                                data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +content.data.children[i].data.title+ "')\">"+content.data.children[i].data.title+"</button>";
+                            }
+                            // data += "<td class='" + tableClass + "'>";
+                            // data += "<img src='" + tweets.results[i].profile_image_url + "'/>";
+                            // data += "</td>";
+                            // data += "<td class='" + tableClass + "'>";
+                            // data += "<b>" + content.data.children[i].data.subreddit + "</b><br/>";
+                            // data += content.data.children[i].data.title + "<br/>";
+                            // data += content.data.children[0].data.created_utc
+                            // data += "</td>";
+                            // data += "</tr>";
+                        }
+                        // data += "</table>";
+                        var reddit = document.getElementById(id);
+                        reddit.innerHTML = data;
+                    }
+                }
+            }
+            request.send();
+        }
+        var redditUrl = "https://www.reddit.com/r/ShowerThoughts/new/.json?limit=3"
+        var showerThoughts = "latestShowerThoughts"
+        loadReddit(redditUrl, showerThoughts);
+        app.receivedEvent('deviceready');
+      
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
