@@ -127,4 +127,5 @@
     <plugin name="com.lisaseacat.twitter" spec="~0.0.3" />
     <plugin name="nl.madebymark.share" spec="https://github.com/markmarijnissen/cordova-plugin-share.git" />
     <plugin name="cordova-plugin-x-socialsharing" spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications" />
 </widget>
