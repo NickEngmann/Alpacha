@@ -17,20 +17,23 @@
  * under the License.
  */
 var embed = [];
+var titles = [];
 function createButtons(){
-    console.log
     var min = Math.ceil(0);
     var max = Math.floor(embed.length-1);
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 3; i++) {
         var random = Math.floor(Math.random() * (max - min + 1)) + min;
-        console.log(random);
+        //inserting titles as a temporary reminder of which subreddits I am using for actual content
         if(i == 0){
-            var data = "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
+            var data = "<p>"+titles[random]+"</p>"
+            data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
         }
         else{
+            data += "<p>"+titles[random]+"</p>"
             data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
         }
     }
+    console.log(data);
     var reddit = document.getElementById("latestReddit");
     reddit.innerHTML = data;
 }
@@ -59,18 +62,15 @@ var app = {
                 if (request.readyState == 4) {
                     if (request.status == 200 || request.status == 0) {
                         var content = JSON.parse(request.responseText);
-
-                        for (i = 0; i < 3; i++) {
-                            if (i == 0){
-                                var data = "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +content.data.children[i].data.title+ "')\">"+content.data.children[i].data.title+"</button>";
-                            }
-                            else{
-                                data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +content.data.children[i].data.title+ "')\">"+content.data.children[i].data.title+"</button>";
-                            }
-                            embed.push(content.data.children[i].data.title);
+                        for (i = 0; i < content.data.children.length; i++) {
+                            //if /' or " in the sentence I need to delete it
+                            var mystring = content.data.children[i].data.title
+                            mystring = mystring.replace(/(['"])/g, "");
+                            embed.push(mystring);
+                            titles.push(content.data.children[i].data.subreddit);
 
                         }
-                        if(embed.length == 15){
+                        if(embed.length == 20){
                             createButtons();
                         }
                     }
@@ -79,11 +79,11 @@ var app = {
             request.send();
         }
         var redditUrls = [
-          ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=3"],
-          ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=3"],
-          ["https://www.reddit.com/r/Lightbulb/new/.json?limit=3"],
-          ["https://www.reddit.com/r/CrazyIdeas/new/.json?limit=3"],
-          ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=3"]
+          ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=5"],
+          ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=1"],
+          ["https://www.reddit.com/r/Lightbulb/new/.json?limit=5"],
+          ["https://www.reddit.com/r/CrazyIdeas/new/.json?limit=5"],
+          ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=4"]
         ];
 
         for(i = 0; i < redditUrls.length; i++){
@@ -97,9 +97,9 @@ var app = {
         });
         cordova.plugins.notification.local.schedule({
             id: 1,
-            text: "Good morning!",
+            text: "Make a new post using Alpacha!",
             //firstAt: tomorrow_at_8_am,
-            every: 2  // "minute", "hour", "week", "month", "year"
+            every: 180  // "minute", "hour", "week", "month", "year"
         });
         app.receivedEvent('deviceready');
     },
