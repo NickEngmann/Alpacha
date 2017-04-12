@@ -16,8 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var iFrequency = 30000; // expressed in miliseconds
+var myInterval = 0;
+
+// STARTS and Resets the loop if any
+
+
+
 var embed = [];
 var titles = [];
+var redditUrls = [
+  ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=5"],
+  ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=1"],
+  ["https://www.reddit.com/r/Lightbulb/new/.json?limit=5"],
+  ["https://www.reddit.com/r/CrazyIdeas/new/.json?limit=5"],
+  ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=4"]
+];
 function createButtons(){
     var min = Math.ceil(0);
     var max = Math.floor(embed.length-1);
@@ -36,6 +51,13 @@ function createButtons(){
     console.log(data);
     var reddit = document.getElementById("latestReddit");
     reddit.innerHTML = data;
+}
+function doSomething()
+{
+    embed = [];
+    for(i = 0; i < redditUrls.length; i++){
+        loadReddit(redditUrls[i]);
+    }
 }
 var app = {
     // Application Constructor
@@ -77,15 +99,13 @@ var app = {
                 }
             }
             request.send();
-        }
-        var redditUrls = [
-          ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=5"],
-          ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=1"],
-          ["https://www.reddit.com/r/Lightbulb/new/.json?limit=5"],
-          ["https://www.reddit.com/r/CrazyIdeas/new/.json?limit=5"],
-          ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=4"]
-        ];
 
+        }
+
+        function startLoop() {
+            if(myInterval > 0) clearInterval(myInterval);  // stop
+            myInterval = setInterval( "doSomething()", iFrequency );  // run
+        }
         for(i = 0; i < redditUrls.length; i++){
             loadReddit(redditUrls[i]);
         }
@@ -98,8 +118,8 @@ var app = {
         cordova.plugins.notification.local.schedule({
             id: 1,
             text: "Make a new post using Alpacha!",
-            //firstAt: tomorrow_at_8_am,
-            every: 180  // "minute", "hour", "week", "month", "year"
+//            firstAt: tomorrow_at_8_am,
+            every: "hour"  // "minute", "hour", "week", "month", "year"
         });
         app.receivedEvent('deviceready');
     },
