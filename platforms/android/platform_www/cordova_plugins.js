@@ -1,31 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
-    },
-    {
-        "id": "com.lisaseacat.twitter.twitter",
-        "file": "plugins/com.lisaseacat.twitter/www/twitter.js",
-        "pluginId": "com.lisaseacat.twitter",
-        "clobbers": [
-            "twitter"
-        ]
-    },
-    {
-        "id": "com.lisaseacat.twitter.jsOAuth",
-        "file": "plugins/com.lisaseacat.twitter/www/jsOAuth-1.3.7.min.js",
-        "pluginId": "com.lisaseacat.twitter",
-        "clobbers": [
-            "jsOAuth"
-        ]
-    },
-    {
         "id": "cordova-plugin-battery-status.battery",
         "file": "plugins/cordova-plugin-battery-status/www/battery.js",
         "pluginId": "cordova-plugin-battery-status",
@@ -608,13 +583,20 @@ module.exports = [
         "clobbers": [
             "TwitterConnect"
         ]
+    },
+    {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-inappbrowser": "1.3.0",
-    "com.lisaseacat.twitter": "0.0.3",
     "cordova-plugin-app-event": "1.2.0",
     "cordova-plugin-battery-status": "1.1.2",
     "cordova-plugin-camera": "2.1.1",
@@ -642,7 +624,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.local-notification": "0.8.4",
     "nl.madebymark.share": "0.1.1",
     "org.phonegap.plugins.twitter": "0.1.0",
-    "twitter-connect-plugin": "0.6.0"
+    "twitter-connect-plugin": "0.6.0",
+    "cordova-plugin-inappbrowser": "1.3.0"
 };
 // BOTTOM OF METADATA
 });

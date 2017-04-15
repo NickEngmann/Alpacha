@@ -74,9 +74,6 @@
         "cordova-plugin-twitter": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "com.lisaseacat.twitter": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "nl.madebymark.share": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },

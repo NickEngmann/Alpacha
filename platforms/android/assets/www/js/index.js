@@ -118,7 +118,6 @@ var app = {
         cordova.plugins.notification.local.schedule({
             id: 1,
             text: "Make a new post using Alpacha!",
-//            firstAt: tomorrow_at_8_am,
             every: "hour"  // "minute", "hour", "week", "month", "year"
         });
         app.receivedEvent('deviceready');

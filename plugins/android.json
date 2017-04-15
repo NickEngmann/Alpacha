@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.lisaseacat.twitter": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "cordova-plugin-battery-status": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },

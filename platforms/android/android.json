@@ -9,14 +9,6 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Twitter\"><param name=\"android-package\" value=\"com.lisaseacat.twitter.TwitterPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Battery\"><param name=\"android-package\" value=\"org.apache.cordova.batterystatus.BatteryListener\" /></feature>",
                             "count": 1
                         },
@@ -115,6 +107,10 @@
                         {
                             "xml": "<feature name=\"TwitterConnect\"><param name=\"android-package\" value=\"com.manifestwebdesign.twitterconnect.TwitterConnect\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -122,10 +118,6 @@
             "AndroidManifest.xml": {
                 "parents": {
                     "/manifest": [
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-                            "count": 1
-                        },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
@@ -228,12 +220,6 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
-        "com.lisaseacat.twitter": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "cordova-plugin-app-event": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
@@ -318,35 +304,13 @@
         "twitter-connect-plugin": {
             "FABRIC_KEY": "312a5f2ae49877a648a88d1baef45e272cde3cbf",
             "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },
     "dependent_plugins": {},
     "modules": [
-        {
-            "id": "cordova-plugin-inappbrowser.inappbrowser",
-            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "clobbers": [
-                "cordova.InAppBrowser.open",
-                "window.open"
-            ]
-        },
-        {
-            "id": "com.lisaseacat.twitter.twitter",
-            "file": "plugins/com.lisaseacat.twitter/www/twitter.js",
-            "pluginId": "com.lisaseacat.twitter",
-            "clobbers": [
-                "twitter"
-            ]
-        },
-        {
-            "id": "com.lisaseacat.twitter.jsOAuth",
-            "file": "plugins/com.lisaseacat.twitter/www/jsOAuth-1.3.7.min.js",
-            "pluginId": "com.lisaseacat.twitter",
-            "clobbers": [
-                "jsOAuth"
-            ]
-        },
         {
             "id": "cordova-plugin-battery-status.battery",
             "file": "plugins/cordova-plugin-battery-status/www/battery.js",
@@ -930,11 +894,18 @@
             "clobbers": [
                 "TwitterConnect"
             ]
+        },
+        {
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-inappbrowser": "1.3.0",
-        "com.lisaseacat.twitter": "0.0.3",
         "cordova-plugin-app-event": "1.2.0",
         "cordova-plugin-battery-status": "1.1.2",
         "cordova-plugin-camera": "2.1.1",
@@ -962,6 +933,7 @@
         "de.appplant.cordova.plugin.local-notification": "0.8.4",
         "nl.madebymark.share": "0.1.1",
         "org.phonegap.plugins.twitter": "0.1.0",
-        "twitter-connect-plugin": "0.6.0"
+        "twitter-connect-plugin": "0.6.0",
+        "cordova-plugin-inappbrowser": "1.3.0"
     }
 }
