@@ -396,6 +396,15 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
         "id": "cordova-plugin-media.MediaError",
         "file": "plugins/cordova-plugin-media/www/MediaError.js",
         "pluginId": "cordova-plugin-media",
@@ -583,15 +592,6 @@ module.exports = [
         "clobbers": [
             "TwitterConnect"
         ]
-    },
-    {
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -611,6 +611,7 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.5.1",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-globalization": "1.0.6",
+    "cordova-plugin-inappbrowser": "1.3.0",
     "cordova-plugin-media": "2.2.0",
     "cordova-plugin-media-capture": "1.2.0",
     "cordova-plugin-network-information": "1.2.1",
@@ -624,8 +625,7 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.local-notification": "0.8.4",
     "nl.madebymark.share": "0.1.1",
     "org.phonegap.plugins.twitter": "0.1.0",
-    "twitter-connect-plugin": "0.6.0",
-    "cordova-plugin-inappbrowser": "1.3.0"
+    "twitter-connect-plugin": "0.6.0"
 };
 // BOTTOM OF METADATA
 });
