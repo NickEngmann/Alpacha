@@ -25,13 +25,17 @@ var myInterval = 0;
 
 
 var embed = [];
+var contentUrls = [];
 var titles = [];
 var redditUrls = [
-  ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=5"],
-  ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=1"],
-  ["https://www.reddit.com/r/Lightbulb/new/.json?limit=5"],
-  ["https://www.reddit.com/r/CrazyIdeas/new/.json?limit=5"],
-  ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=4"]
+    ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=5"],
+    ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=1"],
+    ["https://www.reddit.com/r/Lightbulb/new/.json?limit=5"],
+    ["https://www.reddit.com/r/CrazyIdeas/new/.json?limit=5"],
+    ["https://www.reddit.com/r/nottheonion/new/.json?limit=3"],
+    ["https://www.reddit.com/r/technology/new/.json?limit=4"],
+    ["https://www.reddit.com/r/worldnews/new/.json?limit=3"],
+    ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=4"]
 ];
 function createButtons(){
     var min = Math.ceil(0);
@@ -40,15 +44,27 @@ function createButtons(){
         var random = Math.floor(Math.random() * (max - min + 1)) + min;
         //inserting titles as a temporary reminder of which subreddits I am using for actual content
         if(i == 0){
-            var data = "<p>"+titles[random]+"</p>"
-            data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
+            if(titles[random] == "nottheonion" || titles[random] == "technology" || titles[random] =="worldnews"){
+                var data = "<p>"+titles[random]+"</p>"
+                data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" + contentUrls[random] + "')\">"+embed[random]+"</button>";            
+            }
+            else{
+                var data = "<p>"+titles[random]+"</p>"
+                data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
+            }
         }
         else{
-            data += "<p>"+titles[random]+"</p>"
-            data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
+            if(titles[random] == "nottheonion" || titles[random] == "technology" || titles[random] =="worldnews"){
+                data += "<p>"+titles[random]+"</p>"
+                data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" + contentUrls[random] + "')\">"+embed[random]+"</button>";            
+            }
+            else{
+                data += "<p>"+titles[random]+"</p>"
+                data += "<button onclick=\"window.plugins.socialsharing.shareViaTwitter('" +embed[random]+ "')\">"+embed[random]+"</button>";
+            }
         }
     }
-    console.log(data);
+    //console.log(data);
     var reddit = document.getElementById("latestReddit");
     reddit.innerHTML = data;
 }
@@ -86,13 +102,22 @@ var app = {
                         var content = JSON.parse(request.responseText);
                         for (i = 0; i < content.data.children.length; i++) {
                             //if /' or " in the sentence I need to delete it
-                            var mystring = content.data.children[i].data.title
-                            mystring = mystring.replace(/(['"])/g, "");
-                            embed.push(mystring);
+                            var titleString = content.data.children[i].data.title
+                            //if I am also grabbing the url to add to the title string
+                            if(content.data.children[i].data.subreddit == "nottheonion" || content.data.children[i].data.subreddit == "technology" || content.data.children[i].data.subreddit == "worldnews"){
+                                var urlString = content.data.children[i].data.url;
+                                contentUrls.push(urlString);
+                                // console.log(contentUrls);
+                            }
+                            else{
+                                contentUrls.push("null");
+                            }
+                            titleString = titleString.replace(/(['"])/g, "");
+                            embed.push(titleString);
                             titles.push(content.data.children[i].data.subreddit);
 
                         }
-                        if(embed.length == 20){
+                        if(embed.length == 30){
                             createButtons();
                         }
                     }
@@ -101,7 +126,6 @@ var app = {
             request.send();
 
         }
-
         function startLoop() {
             if(myInterval > 0) clearInterval(myInterval);  // stop
             myInterval = setInterval( "doSomething()", iFrequency );  // run
