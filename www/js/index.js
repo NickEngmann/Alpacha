@@ -22,11 +22,13 @@ var myInterval = 0;
 
 // STARTS and Resets the loop if any
 
-
-
+//the text inside the subreddit post is embed
 var embed = [];
+//the urls embeded within the subreddit post is contentUrls
 var contentUrls = [];
+//the Subreddit titles is titles
 var titles = [];
+//urls of sources from Reddit
 var redditUrls = [
     ["https://www.reddit.com/r/ShowerThoughts/new/.json?limit=5"],
     ["https://www.reddit.com/r/CongratsLikeImFive/new/.json?limit=1"],
@@ -37,6 +39,9 @@ var redditUrls = [
     ["https://www.reddit.com/r/worldnews/new/.json?limit=3"],
     ["https://www.reddit.com/r/ShittyLifeProTips/new/.json?limit=4"]
 ];
+
+//this function is called when the application finishes scraping the content. It creates three buttons 
+//displayed on the page under the refresh button with the URL links to share via twitter.
 function createButtons(){
     var min = Math.ceil(0);
     var max = Math.floor(embed.length-1);
@@ -68,6 +73,8 @@ function createButtons(){
     var reddit = document.getElementById("latestReddit");
     reddit.innerHTML = data;
 }
+
+//this function initalizes the Reddit scraping
 function doSomething()
 {
     embed = [];
@@ -139,6 +146,7 @@ var app = {
         cordova.plugins.notification.local.registerPermission(function (granted) {
             console.log('Permission has been granted: ' + granted);
         });
+        //sets up notifications to appear every hour
         cordova.plugins.notification.local.schedule({
             id: 1,
             text: "Make a new post using Alpacha!",
